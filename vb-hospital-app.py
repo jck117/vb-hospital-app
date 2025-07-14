@@ -6,16 +6,13 @@ import datetime
 import concurrent.futures
 import re
 
-# Requirements
-# - requests
-# - python-dateutil (for parsing dates)
 
-# Configuration
 CMS_API_URL = "https://data.cms.gov/provider-data/api/1/metastore/schemas/dataset/items"
 OUTPUT_DIR = "hospital_datasets"
 RUN_METADATA_FILE = "run_metadata.json"
 
 def get_datasets(theme):
+    
     response = requests.get(CMS_API_URL, params={"theme": theme})
     response.raise_for_status()
     return response.json()["items"]
